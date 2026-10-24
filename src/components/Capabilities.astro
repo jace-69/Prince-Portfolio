@@ -1,0 +1,252 @@
+---
+// src/components/Capabilities.astro
+
+interface CapabilityBlock {
+  title: string;
+  description: string;
+  leftTags: string[];
+  rightTags: string[];
+}
+
+const capabilityBlocks: CapabilityBlock[] = [
+  {
+    title: "BRAND ELEVATION",
+    description: "We craft high-end visual systems that command premium pricing from day one.",
+    leftTags: [
+      "INSTANT CREDIBILITY",
+      "UNFORGETTABLE FIRST IMPRESSIONS",
+      "CUSTOM BESPOKE VISUALS",
+    ],
+    rightTags: [
+      "PREMIUM MARKET POSITIONING",
+      "HIGH-TICKET AUTHORITY",
+      "NICHE SUPERIORITY",
+    ],
+  },
+  {
+    title: "CONVERSION DESIGN",
+    description: "Beautiful pages that don't sell are expensive digital art. Every section, headline, and button is engineered to hook visitors in 3 seconds, kill objections, and drive decisions.",
+    leftTags: [
+      "HIGH-CONVERTING LANDING PAGES",
+      "3-SECOND RETENTION HOOKS",
+      "MOBILE REVENUE OPTIMIZATION",
+    ],
+    rightTags: [
+      "FRICTIONLESS CALL-TO-ACTION",
+      "RESPONSIVE LAYOUT",
+      "DECISION-DRIVEN HIERARCHY",
+    ],
+  },
+  {
+    title: "TECHNICAL PERFORMANCE",
+    description: "Professional website development focused on performance, scalability, and seamless functionality.",
+    leftTags: [
+      "FRONT-END / BACK -END",
+      "CMS INTEGRATION",
+      "E-COMMERCE",
+    ],
+    rightTags: [
+      "FRAMER / WEBFLOW",
+      "PAYMENTS",
+      "SEO SETUP",
+    ],
+  },
+];
+---
+
+<section id="capabilities" class="relative z-20 w-full bg-black text-white pt-24 sm:pt-32 select-none">
+  <!-- Layout Container: Inset by px-6 sm:px-8 to lock onto the universal site grid -->
+  <div class="w-full px-6 sm:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8">
+      
+      <!-- Left Column: Sticky Rail with Section Label & Phone Mockup -->
+      <div class="lg:col-span-4 xl:col-span-4">
+        <div class="lg:sticky lg:top-28 flex flex-col items-start space-y-4">
+          <span class="reveal-up text-xs sm:text-[13px] font-medium tracking-wider uppercase text-neutral-400">
+            CAPABILITIES
+          </span>
+          <p class="reveal-up delay-1 text-xs sm:text-[13px] text-neutral-400 max-w-[240px] leading-relaxed font-light">
+            Complete digital services delivering design, branding, and high-performance web solutions.
+          </p>
+
+          <!-- 
+            Phone Mockup (08.webp):
+            - w-36 sm:w-40 md:w-44 (neat ~150px size, no gray border)
+            - Emerges directly out of the black void
+          -->
+          <div class="pt-4">
+            <div class="mockup-emerge-black w-36 sm:w-40 md:w-44 overflow-hidden rounded-lg">
+              <img
+                src="/images/08.webp"
+                alt="Capabilities preview interface"
+                class="w-full h-auto object-cover select-none pointer-events-none"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: 3 Pillars with Sub-descriptions and Tag Matrices -->
+      <div class="lg:col-span-8 xl:col-span-8 flex flex-col space-y-20 sm:space-y-28">
+        {capabilityBlocks.map((block, index) => (
+          <div 
+            class="reveal-up flex flex-col border-t border-neutral-800 pt-8 sm:pt-10"
+            style={`transition-delay: ${index * 0.08}s;`}
+          >
+            <!-- Header Row: Title on Left, Description on Right -->
+            <div class="flex flex-col md:flex-row md:items-start justify-between gap-6 pb-8 sm:pb-12">
+              <h2 class="text-2xl sm:text-3xl lg:text-[2.2rem] font-normal tracking-tight text-white uppercase max-w-sm">
+                {block.title}
+              </h2>
+              <p class="text-xs sm:text-[13px] text-neutral-400 max-w-[280px] md:text-left leading-relaxed font-light">
+                {block.description}
+              </p>
+            </div>
+
+            <!-- Two-Column Tabular Feature Tags (Right-Aligned Matrix matching design) -->
+            <div class="w-full md:max-w-[500px] lg:max-w-[560px] md:ml-auto grid grid-cols-1 sm:grid-cols-2 gap-x-8 sm:gap-x-12">
+              <!-- Left Column Tags -->
+              <div class="flex flex-col">
+                {block.leftTags.map((tag) => (
+                  <div class="py-3 border-b border-neutral-800 min-h-[58px] flex items-center">
+                    <span class="text-xs sm:text-[13px] font-medium tracking-wide uppercase text-white leading-snug max-w-[210px]">
+                      {tag}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              <!-- Right Column Tags (Directly under the description) -->
+              <div class="flex flex-col">
+                {block.rightTags.map((tag) => (
+                  <div class="py-3 border-b border-neutral-800 min-h-[58px] flex items-center">
+                    <span class="text-xs sm:text-[13px] font-medium tracking-wide uppercase text-white leading-snug max-w-[210px]">
+                      {tag}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Full-Bleed Laptop Workspace Showcase Banner -->
+  <div class="w-full mt-24 sm:mt-32 overflow-hidden px-6 sm:px-8 border-t border-neutral-900">
+    <div class="reveal-wipe overflow-hidden rounded-sm">
+      <img
+        src="/images/09.webp"
+        alt="MacBook Pro showcasing digital studio web application on blue velvet sofa"
+        class="reveal-img w-full h-auto object-cover object-center max-h-[90vh] select-none"
+        loading="lazy"
+      />
+    </div>
+  </div>
+</section>
+
+<style>
+  /* --- Upward Text Reveal (Emerging from Black with Soft Depth) --- */
+  .reveal-up {
+    opacity: 0;
+    transform: translateY(35px);
+    filter: blur(3px) brightness(0.5);
+    transition: 
+      opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), 
+      transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+      filter 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform, filter;
+  }
+
+  .reveal-up.is-revealed {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0) brightness(1);
+  }
+
+  .reveal-up.delay-1 {
+    transition-delay: 0.1s;
+  }
+
+  /* --- Phone Mockup: Emerging from the Black Void with Halfway Wipe --- */
+  .mockup-emerge-black {
+    opacity: 0;
+    transform: translateY(40px) scale(0.96);
+    filter: brightness(0.15) contrast(1.1);
+    /* Wiped 48% from the bottom into pure black */
+    clip-path: inset(0 0 48% 0 round 10px);
+    transition: 
+      opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 1s cubic-bezier(0.16, 1, 0.3, 1),
+      filter 0.95s cubic-bezier(0.16, 1, 0.3, 1),
+      clip-path 1.05s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform, filter, clip-path;
+  }
+
+  .mockup-emerge-black.is-revealed {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: brightness(1) contrast(1);
+    clip-path: inset(0 0 0 0 round 10px);
+  }
+
+  /* --- Full-Bleed Laptop Banner 40% Wipe --- */
+  .reveal-wipe {
+    clip-path: inset(20% 20% 20% 20% round 2px);
+    filter: brightness(0.2);
+    transition: 
+      clip-path 1.1s cubic-bezier(0.16, 1, 0.3, 1),
+      filter 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: clip-path, filter;
+  }
+
+  .reveal-wipe .reveal-img {
+    transform: scale(1.1);
+    transition: transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+  }
+
+  .reveal-wipe.is-revealed {
+    clip-path: inset(0% 0% 0% 0% round 2px);
+    filter: brightness(1);
+  }
+
+  .reveal-wipe.is-revealed .reveal-img {
+    transform: scale(1);
+  }
+</style>
+
+<script>
+  function initCapabilitiesReveals() {
+    const targets = document.querySelectorAll<HTMLElement>(
+      '.reveal-up, .mockup-emerge-black, .reveal-wipe'
+    );
+    if (!targets.length) return;
+
+    // Continuous Observer: Triggers every time you scroll into or back to the section
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-revealed');
+          } else {
+            // Removes the class when scrolling out of view so it can re-animate when you scroll back!
+            entry.target.classList.remove('is-revealed');
+          }
+        });
+      },
+      {
+        threshold: 0.15,
+        rootMargin: '0px 0px -40px 0px',
+      }
+    );
+
+    targets.forEach((el) => observer.observe(el));
+  }
+
+  initCapabilitiesReveals();
+  document.addEventListener('astro:page-load', initCapabilitiesReveals);
+</script>

@@ -1,0 +1,117 @@
+---
+interface Props {
+  fullName?: string;
+  instagramUrl?: string;
+  linkedinUrl?: string;
+  twitterUrl?: string;
+  email?: string;
+}
+
+const {
+  fullName = "PRINCE NKAH",
+  instagramUrl = "https://instagram.com",
+  linkedinUrl = "https://linkedin.com",
+  twitterUrl = "https://x.com",
+  email = "mailto:hello@princenkah.com",
+} = Astro.props;
+---
+
+<footer id="contact" class="w-full bg-black text-white pt-16 sm:pt-24 pb-28 sm:pb-36 overflow-hidden select-none">
+  
+  <!-- ======================================================== -->
+  <!-- 1. INFINITE SEAMLESS TICKER / MARQUEE                    -->
+  <!-- ======================================================== -->
+  <div class="relative w-full overflow-hidden flex select-none pointer-events-none py-2">
+    <!-- Track 1 (Primary) -->
+    <div class="footer-marquee-track flex flex-shrink-0 items-center will-change-transform">
+      {Array.from({ length: 3 }).map(() => (
+        <span class="text-[19vw] sm:text-[16vw] font-normal leading-[0.82] tracking-[-0.04em] text-white whitespace-nowrap uppercase pr-8 sm:pr-14">
+          {fullName} <span class="text-neutral-700 font-light mx-3 sm:mx-6">—</span>
+        </span>
+      ))}
+    </div>
+
+    <!-- Track 2 (Duplicate for Seamless Infinite Wrap) -->
+    <div class="footer-marquee-track flex flex-shrink-0 items-center will-change-transform" aria-hidden="true">
+      {Array.from({ length: 3 }).map(() => (
+        <span class="text-[19vw] sm:text-[16vw] font-normal leading-[0.82] tracking-[-0.04em] text-white whitespace-nowrap uppercase pr-8 sm:pr-14">
+          {fullName} <span class="text-neutral-700 font-light mx-3 sm:mx-6">—</span>
+        </span>
+      ))}
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- 2. CENTRAL AXIS SPLIT LINKS AREA                         -->
+  <!-- ======================================================== -->
+  <div class="w-full px-6 sm:px-10 md:px-14 mt-12 sm:mt-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 w-full">
+      
+      <!-- Left Column: Architectural Negative Space on Desktop -->
+      <div class="hidden md:block"></div>
+
+      <!-- Right Column: Vertical Hairline & Stacked Direct Links -->
+      <div class="relative pl-6 sm:pl-8 py-1">
+        <!-- Thin Vertical Guide Hairline -->
+        <div class="absolute left-0 top-0 bottom-0 w-[1px] bg-neutral-800"></div>
+
+        <!-- Links Stack -->
+        <nav class="flex flex-col space-y-2 text-sm sm:text-base md:text-[17px] font-normal tracking-tight text-white">
+          <a
+            href={instagramUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:text-neutral-400 transition-colors duration-200 inline-block w-fit"
+          >
+            Instagram
+          </a>
+          <a
+            href={linkedinUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:text-neutral-400 transition-colors duration-200 inline-block w-fit"
+          >
+            LinkedIn
+          </a>
+          <a
+            href={twitterUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:text-neutral-400 transition-colors duration-200 inline-block w-fit"
+          >
+            X
+          </a>
+          <a
+            href={email}
+            class="hover:text-neutral-400 transition-colors duration-200 inline-block w-fit"
+          >
+            Mail
+          </a>
+        </nav>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer-marquee-track {
+    animation: footer-marquee 32s linear infinite;
+  }
+
+  @keyframes footer-marquee {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      transform: translate3d(-100%, 0, 0);
+    }
+  }
+
+  /* Optional: pause on desktop hover if cursor interacts with footer */
+  @media (hover: hover) {
+    footer:hover .footer-marquee-track {
+      animation-play-state: running; /* Keep running or set to 'paused' if you prefer */
+    }
+  }
+</style>

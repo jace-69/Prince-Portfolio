@@ -1,0 +1,157 @@
+---
+// src/components/TechStack.astro
+---
+
+<section id="tech-stack" class="w-full bg-black text-white select-none m-0 p-0">
+  
+  <!-- Header & Infinite Marquee Area (Padding isolated here only) -->
+  <div class="w-full pt-20 sm:pt-28 pb-16 sm:pb-20 flex flex-col items-center">
+    
+    <!-- Section Sub-header -->
+    <span class="text-xs sm:text-[13px] font-medium tracking-[0.25em] uppercase text-[#8E8E93] mb-12 sm:mb-16">
+      TECH STACK
+    </span>
+
+    <!-- Infinite Scrolling Track with Edge Gradient Mask -->
+    <div class="marquee-mask relative w-full overflow-hidden flex">
+      <div class="marquee-content flex items-center shrink-0">
+        
+        <!-- Track 1 -->
+        <div class="flex items-center gap-14 sm:gap-20 md:gap-24 pr-14 sm:pr-20 md:pr-24 shrink-0 text-white">
+          <div class="w-7 h-7 sm:w-8 sm:h-8 bg-white text-black font-black text-xs sm:text-sm rounded-[6px] flex items-center justify-center tracking-tighter shrink-0" title="Photoshop">Ps</div>
+          <div class="w-7 h-7 sm:w-8 sm:h-8 bg-white text-black font-black text-xs sm:text-sm rounded-[6px] flex items-center justify-center tracking-tighter shrink-0" title="InDesign">Id</div>
+          <div class="w-7 h-7 sm:w-8 sm:h-8 bg-white text-black font-black text-xs sm:text-sm rounded-[6px] flex items-center justify-center tracking-tighter shrink-0" title="Illustrator">Ai</div>
+          <div class="shrink-0 flex items-center justify-center text-white" title="Cloud">
+            <svg class="w-7 h-7 sm:w-8 sm:h-8" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/>
+            </svg>
+          </div>
+          <div class="shrink-0 flex items-center justify-center text-white" title="Figma">
+            <svg class="w-5 h-7 sm:w-6 sm:h-8" viewBox="0 0 38 57" fill="currentColor">
+              <path d="M19 28.5C19 23.2533 23.2533 19 28.5 19C33.7467 19 38 23.2533 38 28.5C38 33.7467 33.7467 38 28.5 38C23.2533 38 19 33.7467 19 28.5Z"/>
+              <path d="M0 47.5C0 42.2533 4.25329 38 9.5 38H19V47.5C19 52.7467 14.7467 57 9.5 57C4.25329 57 0 52.7467 0 47.5Z"/>
+              <path d="M19 0V19H28.5C33.7467 19 38 14.7467 38 9.5C38 4.25329 33.7467 0 28.5 0H19Z"/>
+              <path d="M0 9.5C0 14.7467 4.25329 19 9.5 19H19V0H9.5C4.25329 0 0 4.25329 0 9.5Z"/>
+              <path d="M0 28.5C0 33.7467 4.25329 38 9.5 38H19V19H9.5C4.25329 19 0 23.2533 0 28.5Z"/>
+            </svg>
+          </div>
+          <div class="shrink-0 flex items-center justify-center text-white" title="Framer">
+            <svg class="w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M4 0h16v8h-8zM4 8h8l8 8H4zM4 16h8v8z"/>
+            </svg>
+          </div>
+          <div class="shrink-0 flex items-center justify-center text-white" title="Astro">
+            <svg class="w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 24 24" fill="currentColor">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2.25c.34 0 .66.19.82.5l7.5 14.25a.94.94 0 0 1-.82 1.38H15.5l-1.3-3.25h-4.4L8.5 18.38H4.5a.94.94 0 0 1-.82-1.38l7.5-14.25c.16-.31.48-.5.82-.5Zm0 4.75L10.2 13.5h3.6L12 7Z" />
+              <path d="M10 20.25c0-.69.56-1.25 1.25-1.25h1.5c.69 0 1.25.56 1.25 1.25 0 1.1-.9 1.75-2 1.75s-2-.65-2-1.75Z"/>
+            </svg>
+          </div>
+          <div class="shrink-0 flex items-center justify-center text-white" title="Tailwind CSS">
+            <svg class="w-7 h-7 sm:w-8 sm:h-8" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.336 6.182 14.975 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.336 13.382 8.975 12 6.001 12z"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Track 2 (Duplicate) -->
+        <div class="flex items-center gap-14 sm:gap-20 md:gap-24 pr-14 sm:pr-20 md:pr-24 shrink-0 text-white" aria-hidden="true">
+          <div class="w-7 h-7 sm:w-8 sm:h-8 bg-white text-black font-black text-xs sm:text-sm rounded-[6px] flex items-center justify-center tracking-tighter shrink-0">Ps</div>
+          <div class="w-7 h-7 sm:w-8 sm:h-8 bg-white text-black font-black text-xs sm:text-sm rounded-[6px] flex items-center justify-center tracking-tighter shrink-0">Id</div>
+          <div class="w-7 h-7 sm:w-8 sm:h-8 bg-white text-black font-black text-xs sm:text-sm rounded-[6px] flex items-center justify-center tracking-tighter shrink-0">Ai</div>
+          <div class="shrink-0 flex items-center justify-center text-white">
+            <svg class="w-7 h-7 sm:w-8 sm:h-8" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/>
+            </svg>
+          </div>
+          <div class="shrink-0 flex items-center justify-center text-white">
+            <svg class="w-5 h-7 sm:w-6 sm:h-8" viewBox="0 0 38 57" fill="currentColor">
+              <path d="M19 28.5C19 23.2533 23.2533 19 28.5 19C33.7467 19 38 23.2533 38 28.5C38 33.7467 33.7467 38 28.5 38C23.2533 38 19 33.7467 19 28.5Z"/>
+              <path d="M0 47.5C0 42.2533 4.25329 38 9.5 38H19V47.5C19 52.7467 14.7467 57 9.5 57C4.25329 57 0 52.7467 0 47.5Z"/>
+              <path d="M19 0V19H28.5C33.7467 19 38 14.7467 38 9.5C38 4.25329 33.7467 0 28.5 0H19Z"/>
+              <path d="M0 9.5C0 14.7467 4.25329 19 9.5 19H19V0H9.5C4.25329 0 0 4.25329 0 9.5Z"/>
+              <path d="M0 28.5C0 33.7467 4.25329 38 9.5 38H19V19H9.5C4.25329 19 0 23.2533 0 28.5Z"/>
+            </svg>
+          </div>
+          <div class="shrink-0 flex items-center justify-center text-white">
+            <svg class="w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M4 0h16v8h-8zM4 8h8l8 8H4zM4 16h8v8z"/>
+            </svg>
+          </div>
+          <div class="shrink-0 flex items-center justify-center text-white">
+            <svg class="w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 24 24" fill="currentColor">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2.25c.34 0 .66.19.82.5l7.5 14.25a.94.94 0 0 1-.82 1.38H15.5l-1.3-3.25h-4.4L8.5 18.38H4.5a.94.94 0 0 1-.82-1.38l7.5-14.25c.16-.31.48-.5.82-.5Zm0 4.75L10.2 13.5h3.6L12 7Z" />
+              <path d="M10 20.25c0-.69.56-1.25 1.25-1.25h1.5c.69 0 1.25.56 1.25 1.25 0 1.1-.9 1.75-2 1.75s-2-.65-2-1.75Z"/>
+            </svg>
+          </div>
+          <div class="shrink-0 flex items-center justify-center text-white">
+            <svg class="w-7 h-7 sm:w-8 sm:h-8" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.336 6.182 14.975 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.336 13.382 8.975 12 6.001 12z"/>
+            </svg>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Flush Visual Mockups (Pure block elements, ZERO bottom margin or padding) -->
+  <div class="w-full m-0 p-0 leading-none">
+    <div class="w-full overflow-hidden leading-none">
+      <img
+        src="/images/08.webp"
+        alt="Mobile UI Showcase"
+        class="w-full h-auto block object-cover"
+        loading="lazy"
+      />
+    </div>
+
+    <!-- Final image: flush against the bottom cut -->
+    <div class="w-full overflow-hidden leading-none m-0 p-0">
+      <img
+        src="/images/10.webp"
+        alt="Hill Legal Practice Digital Platform Showcase on Tablet"
+        class="w-full h-auto block object-cover m-0 p-0"
+        loading="lazy"
+      />
+    </div>
+  </div>
+</section>
+
+<style>
+  .marquee-mask {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 1) 12%,
+      rgba(0, 0, 1) 88%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 1) 12%,
+      rgba(0, 0, 0, 1) 88%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+
+  .marquee-content {
+    animation: marquee-roll 26s linear infinite;
+    will-change: transform;
+  }
+
+  @keyframes marquee-roll {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-content {
+      animation-play-state: paused;
+    }
+  }
+</style>

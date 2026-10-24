@@ -1,0 +1,191 @@
+---
+// src/components/WorksGrid.astro
+
+interface Props {
+  clickable?: boolean;
+}
+
+const { clickable = false } = Astro.props;
+
+interface Project {
+  title: string;
+  slug: string;
+  services: string[];
+  image: string;
+  isLightBackground?: boolean;
+}
+
+const projects: Project[] = [
+  {
+    title: "Nocta",
+    slug: "nocta",
+    services: ["Brand, website design,", "Development"],
+    image: "/images/01.webp",
+    isLightBackground: false,
+  },
+  {
+    title: "Enraux",
+    slug: "enraux",
+    services: ["Brand, website, Strategy,", "Development"],
+    image: "/images/02.webp",
+    isLightBackground: true,
+  },
+  {
+    title: "Hill",
+    slug: "hill",
+    services: ["Brand, website Strategy", "Development"],
+    image: "/images/03.webp",
+    isLightBackground: false,
+  },
+  {
+    title: "Dreamland",
+    slug: "dreamland",
+    services: ["Brand, website design,", "Development"],
+    image: "/images/04.webp",
+    isLightBackground: false,
+  },
+];
+
+const CardTag = clickable ? 'a' : 'div';
+---
+
+<section 
+  id="works" 
+  class="relative z-20 w-full bg-black select-none px-6 sm:px-8 pb-20 sm:pb-32 shadow-[0_-30px_60px_rgba(0,0,0,0.95)]"
+>
+  <!-- Tight hairline gap (4px-6px) -->
+  <div class="grid grid-cols-1 md:grid-cols-2 w-full gap-1 sm:gap-1.5 overflow-hidden">
+    {projects.map((project) => (
+      <CardTag
+        href={clickable ? `/works/${project.slug}` : undefined}
+        class:list={[
+          "work-card relative block w-full aspect-square overflow-hidden select-none bg-neutral-900",
+          clickable ? "cursor-pointer group" : "cursor-default",
+        ]}
+      >
+        <!-- Static Background Imagery -->
+        <img
+          src={project.image}
+          alt={project.title}
+          class:list={[
+            "w-full h-full object-cover object-center pointer-events-none",
+            clickable && "transition-transform duration-700 ease-out group-hover:scale-[1.025]"
+          ]}
+          loading="lazy"
+        />
+
+        <!-- Contrast Vignette -->
+        {!project.isLightBackground && (
+          <div class="absolute inset-0 bg-black/15 pointer-events-none" />
+        )}
+
+        <!-- 
+          Centered baseline:
+          Outer wrapper is fixed at `top-1/2 -translate-y-1/2`.
+          Inner `.project-meta` translates down to the bottom as the top of the card scrolls past.
+        -->
+        <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 z-10 pointer-events-none">
+          <div class="project-meta flex items-center justify-between px-6 sm:px-8 md:px-10 will-change-transform">
+            <!-- Project Title (Left) -->
+            <h2
+              class:list={[
+                "text-2xl sm:text-3xl md:text-4xl font-medium tracking-tight",
+                project.isLightBackground ? "text-neutral-900" : "text-white",
+              ]}
+            >
+              {project.title}
+            </h2>
+
+            <!-- Service Tags (Right) -->
+            <div
+              class:list={[
+                "text-right text-xs sm:text-[13px] md:text-sm font-normal leading-snug tracking-tight",
+                project.isLightBackground ? "text-neutral-900" : "text-white",
+              ]}
+            >
+              {project.services.map((line) => (
+                <div>{line}</div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </CardTag>
+    ))}
+  </div>
+</section>
+
+<script>
+  function initWorksScroll() {
+    const cards = document.querySelectorAll<HTMLElement>('.work-card');
+    if (!cards.length) return;
+
+    // Cache card dimensions and absolute document top to prevent layout thrashing
+    let cardData: Array<{
+      card: HTMLElement;
+      meta: HTMLElement;
+      docTop: number;
+      height: number;
+    }> = [];
+
+    function measure() {
+      const scrollY = window.scrollY;
+      cardData = Array.from(cards).map((card) => {
+        const rect = card.getBoundingClientRect();
+        return {
+          card,
+          meta: card.querySelector<HTMLElement>('.project-meta')!,
+          docTop: rect.top + scrollY,
+          height: rect.height,
+        };
+      });
+    }
+
+    let ticking = false;
+
+    function render() {
+      const scrollY = window.scrollY;
+
+      for (let i = 0; i < cardData.length; i++) {
+        const { meta, docTop, height } = cardData[i];
+        if (!meta) continue;
+
+        // How much of the card has scrolled past the top of the viewport
+        const scrolledPastTop = scrollY - docTop;
+
+        // The travel completes within the first 32% of scroll (where her head cuts off)
+        const travelDistance = height * 0.32;
+        const rawT = Math.min(Math.max(scrolledPastTop / travelDistance, 0), 1);
+
+        // Smoothstep curve (3t^2 - 2t^3) for soft, seamless acceleration and deceleration
+        const smoothedT = rawT * rawT * (3 - 2 * rawT);
+
+        // Distance from center to resting bottom margin
+        const maxTravel = height * 0.36;
+        const y = smoothedT * maxTravel;
+
+        meta.style.transform = `translate3d(0, ${y.toFixed(2)}px, 0)`;
+      }
+
+      ticking = false;
+    }
+
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(render);
+        ticking = true;
+      }
+    }
+
+    measure();
+    render();
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', () => {
+      measure();
+      render();
+    }, { passive: true });
+  }
+
+  initWorksScroll();
+  document.addEventListener('astro:page-load', initWorksScroll);
+</script>

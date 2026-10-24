@@ -1,0 +1,41 @@
+---
+import Layout from '../layouts/Layout.astro';
+import WorksGrid from '../components/WorksGrid.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Works | Prince Nkah">
+  <!-- Stage Header (sticky top-0 z-10 bg-black) -->
+  <section class="sticky top-0 z-10 w-full bg-black text-white pt-36 sm:pt-44 md:pt-48 pb-10 sm:pb-16 px-6 sm:px-10 md:px-14 select-none">
+    <h1 class="works-title text-[21vw] font-normal leading-[0.82] tracking-[-0.04em] text-white uppercase select-none">
+      WORKS
+    </h1>
+  </section>
+
+  <!-- Rolling Curtain Container (relative z-20 bg-black) -->
+  <div class="relative z-20 bg-black min-h-screen">
+    <!-- 2x2 Quadrant Portfolio Grid -->
+    <WorksGrid clickable={true} />
+
+    <!-- Monolithic Signature Footer -->
+    <Footer />
+  </div>
+</Layout>
+
+<style>
+  /* Entrance Animation: Upward Slide matching Hero */
+  @keyframes heroUp {
+    0% {
+      opacity: 0;
+      transform: translateY(35px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .works-title {
+    animation: heroUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+  }
+</style>

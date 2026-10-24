@@ -1,0 +1,363 @@
+---
+// src/components/Promise.astro
+
+const showcaseCards = [
+  { id: 11, src: "/images/11.webp", alt: "Architectural glass facade" },
+  { id: 12, src: "/images/12.webp", alt: "Designer working on laptop" },
+  { id: 13, src: "/images/13.webp", alt: "Laughing woman studio portrait" },
+  { id: 14, src: "/images/14.webp", alt: "Minimalist timepiece on dark surface" },
+  { id: 15, src: "/images/15.webp", alt: "Geometric outdoor staircase shadows" },
+];
+---
+
+<section id="promise" class="relative w-full bg-white text-black py-20 sm:py-28 px-6 sm:px-10 md:px-14 overflow-hidden select-none">
+  
+  <!-- Architectural Corner Crosshairs (+) -->
+  <span class="absolute top-6 left-6 sm:top-8 sm:left-10 text-xl font-light text-neutral-400 leading-none pointer-events-none" aria-hidden="true">+</span>
+  <span class="absolute top-6 right-6 sm:top-8 sm:right-10 text-xl font-light text-neutral-400 leading-none pointer-events-none" aria-hidden="true">+</span>
+  <span class="absolute bottom-6 left-6 sm:bottom-8 sm:left-10 text-xl font-light text-neutral-400 leading-none pointer-events-none" aria-hidden="true">+</span>
+  <span class="absolute bottom-6 right-6 sm:bottom-8 sm:right-10 text-xl font-light text-neutral-400 leading-none pointer-events-none" aria-hidden="true">+</span>
+
+  <!-- Main Container -->
+  <div class="max-w-6xl mx-auto flex flex-col items-center">
+    
+    <!-- 3D Framer Carousel Stage -->
+    <div class="framer-stage relative w-full h-[360px] sm:h-[420px] md:h-[460px] flex items-center justify-center mb-12 sm:mb-16 cursor-grab active:cursor-grabbing touch-pan-y">
+      <div id="promise-track" class="relative w-full h-full flex items-center justify-center">
+        {showcaseCards.map((card, index) => (
+          <div
+            data-card
+            data-index={index}
+            class="promise-card absolute w-[185px] sm:w-[225px] md:w-[250px] aspect-[4/5] rounded-[20px] sm:rounded-[24px] overflow-hidden bg-neutral-900 will-change-transform shadow-[0_22px_50px_-10px_rgba(0,0,0,0.26),0_8px_18px_-4px_rgba(0,0,0,0.1)] cursor-pointer"
+          >
+            <img
+              src={card.src}
+              alt={card.alt}
+              class="w-full h-full object-cover object-center pointer-events-none select-none"
+              draggable="false"
+              loading="eager"
+            />
+            <!-- Darkening overlay for cards as they recede into the back -->
+            <div class="card-shade absolute inset-0 bg-black/0 pointer-events-none transition-colors duration-200"></div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Center Content Stack with Bidirectional Wipe Reveal -->
+    <div id="promise-content-trigger" class="promise-content-stack flex flex-col items-center text-center max-w-3xl opacity-0 transition-opacity duration-300">
+      
+      <!-- Section Tag (Masked Wipe) -->
+      <div class="overflow-hidden mb-4">
+        <span class="promise-tag block text-xs sm:text-[13px] font-medium tracking-[0.25em] uppercase text-neutral-400 translate-y-[110%] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]">
+          ( THE PROMISE )
+        </span>
+      </div>
+
+      <!-- Vertical Divider Tick (Scale Wipe from Top) -->
+      <div class="overflow-hidden mb-6">
+        <div class="promise-tick w-[1px] h-7 bg-neutral-300 scale-y-0 origin-top transition-transform duration-600 ease-[cubic-bezier(0.16,1,0.3,1)]"></div>
+      </div>
+
+      <!-- Core Value Proposition Statements (Line-by-Line Staggered Wipe) -->
+      <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-normal tracking-[-0.03em] leading-[1.18] text-neutral-900">
+        <!-- Line 1 -->
+        <div class="overflow-hidden py-0.5">
+          <span class="promise-line promise-line-1 block translate-y-[115%] transition-transform duration-800 ease-[cubic-bezier(0.16,1,0.3,1)]">
+            Command premium pricing
+          </span>
+        </div>
+
+        <!-- Line 2 -->
+        <div class="overflow-hidden py-0.5">
+          <span class="promise-line promise-line-2 block translate-y-[115%] transition-transform duration-800 ease-[cubic-bezier(0.16,1,0.3,1)]">
+            Eliminate buyer hesitation
+          </span>
+        </div>
+
+        <!-- Line 3 -->
+        <div class="overflow-hidden py-0.5">
+          <span class="promise-line promise-line-3 block translate-y-[115%] transition-transform duration-800 ease-[cubic-bezier(0.16,1,0.3,1)]">
+            Launch in days, not months
+          </span>
+        </div>
+      </h2>
+
+      <!-- Floating Action Contact Pill (Fade & Upward Wipe) -->
+      <div class="overflow-hidden mt-12 sm:mt-16">
+        <a
+          href="#contact"
+          class="promise-cta-pill group inline-flex items-center gap-3.5 bg-white border border-neutral-200 hover:border-neutral-400 rounded-full pl-2 pr-6 py-2 shadow-sm hover:shadow-md translate-y-[120%] opacity-0 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+        >
+          <div class="w-8 h-8 rounded-full overflow-hidden bg-neutral-900 flex-shrink-0">
+            <img
+              src="/images/16.webp"
+              alt="Avatar"
+              class="w-full h-full object-cover object-center"
+            />
+          </div>
+          <span class="text-xs sm:text-[13px] font-medium text-neutral-900 group-hover:text-black transition-colors">
+            Let's chat
+          </span>
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .framer-stage {
+    perspective: 1000px;
+    perspective-origin: 50% 50%;
+  }
+
+  #promise-track {
+    isolation: isolate;
+  }
+
+  .promise-card {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  /* ======================================================== */
+  /* STAGGERED WIPE REVEAL TIMINGS                            */
+  /* ======================================================== */
+  .promise-content-stack.is-visible {
+    opacity: 1;
+  }
+
+  /* 1. Tag wipe */
+  .promise-content-stack.is-visible .promise-tag {
+    transform: translateY(0);
+    transition-delay: 60ms;
+  }
+
+  /* 2. Vertical Line scale-wipe */
+  .promise-content-stack.is-visible .promise-tick {
+    transform: scaleY(1);
+    transition-delay: 160ms;
+  }
+
+  /* 3. Headline Line 1 wipe */
+  .promise-content-stack.is-visible .promise-line-1 {
+    transform: translateY(0);
+    transition-delay: 240ms;
+  }
+
+  /* 4. Headline Line 2 wipe */
+  .promise-content-stack.is-visible .promise-line-2 {
+    transform: translateY(0);
+    transition-delay: 360ms;
+  }
+
+  /* 5. Headline Line 3 wipe */
+  .promise-content-stack.is-visible .promise-line-3 {
+    transform: translateY(0);
+    transition-delay: 480ms;
+  }
+
+  /* 6. CTA Pill wipe & lift */
+  .promise-content-stack.is-visible .promise-cta-pill {
+    transform: translateY(0);
+    opacity: 1;
+    transition-delay: 600ms;
+  }
+
+  /* Reset state: Instant wipe-ready reload when exiting the viewport */
+  .promise-content-stack:not(.is-visible) .promise-tag,
+  .promise-content-stack:not(.is-visible) .promise-tick,
+  .promise-content-stack:not(.is-visible) .promise-line,
+  .promise-content-stack:not(.is-visible) .promise-cta-pill {
+    transition-delay: 0ms !important;
+    transition-duration: 250ms !important;
+  }
+</style>
+
+<script>
+  function setupFramerCarousel() {
+    const stage = document.querySelector('.framer-stage') as HTMLElement;
+    const cards = Array.from(document.querySelectorAll<HTMLElement>('[data-card]'));
+    if (!stage || cards.length === 0) return;
+
+    const total = cards.length;
+    let currentPosition = 0.0;
+    let targetPosition = 0.0;
+    let isDragging = false;
+    let startX = 0;
+    let dragStartPos = 0;
+    let hasMoved = false;
+    let animationFrameId: number | null = null;
+
+    function getMetrics() {
+      const w = window.innerWidth;
+      const isMobile = w < 640;
+      const isTablet = w >= 640 && w < 1024;
+
+      return {
+        frontCardX: isMobile ? 118 : isTablet ? 152 : 168,
+        outerCardX: isMobile ? 224 : isTablet ? 290 : 325,
+        centerScale: 0.88,
+        frontScale: 1.0,
+        outerScale: 0.92,
+        rotFront: isMobile ? 26 : 30,
+        rotOuter: isMobile ? 20 : 24,
+        dragSensitivity: isMobile ? 200 : 260,
+      };
+    }
+
+    function render() {
+      const m = getMetrics();
+
+      cards.forEach((card, index) => {
+        let diff = index - currentPosition;
+
+        while (diff > total / 2) diff -= total;
+        while (diff < -total / 2) diff += total;
+
+        const absDiff = Math.abs(diff);
+        const sign = diff === 0 ? 0 : diff > 0 ? 1 : -1;
+
+        let x = 0;
+        let scale = 1.0;
+        let rotateY = 0;
+        let zIndex = 10;
+        let shadeOpacity = 0.0;
+
+        if (absDiff <= 1.0) {
+          const t = absDiff;
+          x = sign * (t * m.frontCardX);
+          scale = (1 - t) * m.centerScale + t * m.frontScale;
+          rotateY = -sign * (t * m.rotFront);
+          zIndex = Math.round(10 + t * 20);
+          shadeOpacity = (1 - t) * 0.16;
+        } else {
+          const t = Math.min(1.0, absDiff - 1.0);
+          x = sign * (m.frontCardX + t * (m.outerCardX - m.frontCardX));
+          scale = (1 - t) * m.frontScale + t * m.outerScale;
+          rotateY = -sign * ((1 - t) * m.rotFront + t * m.rotOuter);
+          zIndex = Math.round(30 - t * 10);
+          shadeOpacity = t * 0.12;
+        }
+
+        card.style.zIndex = zIndex.toString();
+        card.style.transform = `translate3d(${x.toFixed(1)}px, 0px, 0px) rotateY(${rotateY.toFixed(1)}deg) scale(${scale.toFixed(3)})`;
+
+        const shade = card.querySelector('.card-shade') as HTMLElement;
+        if (shade) {
+          shade.style.backgroundColor = `rgba(0, 0, 0, ${shadeOpacity.toFixed(2)})`;
+        }
+      });
+    }
+
+    function updatePhysics() {
+      if (!isDragging) {
+        const delta = targetPosition - currentPosition;
+        if (Math.abs(delta) > 0.0004) {
+          currentPosition += delta * 0.14;
+          render();
+          animationFrameId = requestAnimationFrame(updatePhysics);
+        } else {
+          currentPosition = targetPosition;
+          render();
+          animationFrameId = null;
+        }
+      } else {
+        render();
+        animationFrameId = requestAnimationFrame(updatePhysics);
+      }
+    }
+
+    function startPhysics() {
+      if (!animationFrameId) {
+        animationFrameId = requestAnimationFrame(updatePhysics);
+      }
+    }
+
+    function onPointerDown(e: PointerEvent) {
+      isDragging = true;
+      hasMoved = false;
+      startX = e.clientX;
+      dragStartPos = targetPosition;
+      stage.setPointerCapture(e.pointerId);
+      startPhysics();
+    }
+
+    function onPointerMove(e: PointerEvent) {
+      if (!isDragging) return;
+      const deltaX = e.clientX - startX;
+      if (Math.abs(deltaX) > 4) hasMoved = true;
+
+      const { dragSensitivity } = getMetrics();
+      targetPosition = dragStartPos - (deltaX / dragSensitivity);
+      currentPosition = targetPosition;
+    }
+
+    function onPointerUp(e: PointerEvent) {
+      if (!isDragging) return;
+      isDragging = false;
+      stage.releasePointerCapture(e.pointerId);
+      targetPosition = Math.round(targetPosition);
+      startPhysics();
+    }
+
+    cards.forEach((card) => {
+      card.addEventListener('click', () => {
+        if (hasMoved) return;
+        const idx = parseInt(card.getAttribute('data-index') || '0', 10);
+        let diff = idx - Math.round(targetPosition);
+        while (diff > total / 2) diff -= total;
+        while (diff < -total / 2) diff += total;
+
+        targetPosition += Math.sign(diff);
+        startPhysics();
+      });
+    });
+
+    stage.addEventListener('pointerdown', onPointerDown);
+    stage.addEventListener('pointermove', onPointerMove);
+    stage.addEventListener('pointerup', onPointerUp);
+    stage.addEventListener('pointercancel', onPointerUp);
+
+    window.addEventListener('resize', render);
+    render();
+  }
+
+  // ========================================================
+  // REVERSIBLE BIDIRECTIONAL SCROLL OBSERVER
+  // ========================================================
+  function setupPromiseTextWipe() {
+    const trigger = document.getElementById('promise-content-trigger');
+    if (!trigger) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Wipes in when scrolling down to it OR scrolling up from below
+            trigger.classList.add('is-visible');
+          } else {
+            // Resets clean when scrolling out of view past top or bottom
+            trigger.classList.remove('is-visible');
+          }
+        });
+      },
+      {
+        threshold: 0.18,
+        rootMargin: '-30px 0px -30px 0px',
+      }
+    );
+
+    observer.observe(trigger);
+  }
+
+  function init() {
+    setupFramerCarousel();
+    setupPromiseTextWipe();
+  }
+
+  document.addEventListener('DOMContentLoaded', init);
+  document.addEventListener('astro:page-load', init);
+</script>

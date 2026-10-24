@@ -1,0 +1,10 @@
+﻿@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-black text-neutral-100 font-sans antialiased selection:bg-neutral-800 selection:text-white;
+  }
+}
+

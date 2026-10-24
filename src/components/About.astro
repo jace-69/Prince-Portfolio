@@ -1,0 +1,195 @@
+---
+// src/components/About.astro
+
+interface Capability {
+  number: string;
+  title: string;
+  description: string;
+}
+
+const capabilities: Capability[] = [
+  {
+    number: "01",
+    title: "VISUAL & BRAND DIRECTION",
+    description: "Asset production, vector iconography, photo retouching, visual identity systems, typography pairing",
+  },
+  {
+    number: "02",
+    title: "VISUAL UI DESIGN",
+    description: "High-converting landing page layouts, wireframing, design systems, mobile-first responsive architecture",
+  },
+  {
+    number: "03",
+    title: "FRONTEND DEVELOPMENT",
+    description: "Ultra-fast static builds (100 Lighthouse score), zero code bloat, clean SEO structure, smooth micro-interactions",
+  },
+  {
+    number: "04",
+    title: "LAUNCH & HANDOFF",
+    description: "Domain setup, analytics integration, and training.",
+  },
+];
+---
+
+<section id="about" class="relative z-20 w-full bg-black text-white pt-24 sm:pt-32">
+  <!-- Content Container: Inset by px-6 sm:px-8 to align with Navbar & Works -->
+  <div class="w-full px-6 sm:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8">
+      
+      <!-- Left Column: Section Label -->
+      <div class="lg:col-span-4 xl:col-span-5">
+        <span class="reveal-up inline-block text-xs sm:text-[13px] font-medium tracking-wider uppercase text-neutral-400 select-none">
+          ABOUT
+        </span>
+      </div>
+
+      <!-- Right Column: Editorial Bio, Staggered Images & Capabilities -->
+      <div class="lg:col-span-8 xl:col-span-7 flex flex-col space-y-16 sm:space-y-24">
+        
+        <!-- Editorial Paragraphs: Upward animation with cascade delay -->
+        <div class="space-y-8 max-w-2xl text-left">
+          <p class="reveal-up text-xl sm:text-2xl md:text-[1.65rem] lg:text-[1.75rem] font-normal leading-snug tracking-tight text-white">
+            I craft clean, modern digital experiences that bring brands to life. With 5+ years of experience in website and brand design, I combine strategy and visual clarity to create work that is both engaging and conversion-focused.
+          </p>
+
+          <p class="reveal-up delay-1 text-base sm:text-lg md:text-xl font-normal leading-relaxed text-neutral-200">
+            I help businesses turn ideas into strong visual identities and high-impact websites — delivering thoughtful, user-centered design that communicates clearly, builds trust, and supports long-term growth.
+          </p>
+        </div>
+
+        <!-- Asymmetric Staggered Image Duo with 40% Wipe Reveal -->
+        <div class="grid grid-cols-1 sm:grid-cols-12 gap-6 items-start max-w-2xl pt-4">
+          <!-- Portrait: Man in Hoodie (Left) -->
+          <div class="sm:col-span-7 overflow-hidden rounded-sm">
+            <div class="reveal-wipe overflow-hidden">
+              <img
+                src="/images/05.webp"
+                alt="Prince - Studio portrait with warm rim lighting"
+                class="reveal-img w-full h-auto object-cover select-none"
+                loading="lazy"
+              />
+            </div>
+          </div>
+
+          <!-- Mockup: Mobile Interface (Right, Staggered lower) -->
+          <div class="sm:col-span-5 sm:pt-20 overflow-hidden rounded-sm">
+            <div class="reveal-wipe reveal-delay overflow-hidden">
+              <img
+                src="/images/06.webp"
+                alt="Mobile app design interface showcase"
+                class="reveal-img w-full h-auto object-cover select-none"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- 4-Step Capabilities & Process List: Staggered upward cascade -->
+        <div class="w-full max-w-2xl border-b border-neutral-900">
+          {capabilities.map((item, index) => (
+            <div 
+              class="reveal-up py-6 border-t border-neutral-800"
+              style={`transition-delay: ${index * 0.12}s;`}
+            >
+              <h3 class="text-xs sm:text-[13px] font-medium tracking-wider uppercase text-white mb-2">
+                {item.number} / {item.title}
+              </h3>
+              <p class="text-xs sm:text-[13px] text-neutral-400 leading-relaxed font-light">
+                {item.description}
+              </p>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Full-Bleed Desk & Glasses Banner with Wipe Reveal -->
+  <div class="w-full mt-24 sm:mt-32 overflow-hidden px-6 sm:px-8">
+    <div class="reveal-wipe overflow-hidden rounded-sm">
+      <img
+        src="/images/07.webp"
+        alt="Workspace desk setup with glasses and marked design documents"
+        class="reveal-img w-full h-auto object-cover object-center max-h-[85vh] select-none"
+        loading="lazy"
+      />
+    </div>
+  </div>
+</section>
+
+<style>
+  /* --- Upward Text Reveal (Exact Hero Curve & Distance) --- */
+  .reveal-up {
+    opacity: 0;
+    transform: translateY(35px);
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+
+  .reveal-up.is-revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-up.delay-1 {
+    transition-delay: 0.15s;
+  }
+
+  /* --- 40% Wipe Reveal for Images --- */
+  .reveal-wipe {
+    clip-path: inset(20% 20% 20% 20% round 2px);
+    transition: clip-path 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: clip-path;
+  }
+
+  .reveal-wipe .reveal-img {
+    transform: scale(1.12);
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+  }
+
+  .reveal-wipe.is-revealed {
+    clip-path: inset(0% 0% 0% 0% round 2px);
+  }
+
+  .reveal-wipe.is-revealed .reveal-img {
+    transform: scale(1);
+  }
+
+  .reveal-wipe.reveal-delay {
+    transition-delay: 0.15s;
+  }
+
+  .reveal-wipe.reveal-delay .reveal-img {
+    transition-delay: 0.15s;
+  }
+</style>
+
+<script>
+  function initAboutReveals() {
+    // Observe both text reveals (.reveal-up) and image wipes (.reveal-wipe)
+    const elements = document.querySelectorAll<HTMLElement>('.reveal-up, .reveal-wipe');
+    if (!elements.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.15,
+        rootMargin: '0px 0px -40px 0px',
+      }
+    );
+
+    elements.forEach((el) => observer.observe(el));
+  }
+
+  initAboutReveals();
+  document.addEventListener('astro:page-load', initAboutReveals);
+</script>

@@ -1,0 +1,44 @@
+---
+// src/components/Navbar.astro
+---
+
+<header class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-6 sm:px-8 py-7 text-xs sm:text-[13px] text-white mix-blend-difference pointer-events-none select-none nav-slide-down">
+  <!-- Brand / Name -->
+  <div class="pointer-events-auto">
+    <a href="/" class="font-medium tracking-tight hover:opacity-70 transition-opacity">
+      Prince Nkah
+    </a>
+  </div>
+
+  <!-- Center Nav: Centered along the global viewport axis -->
+  <nav class="hidden md:flex items-center space-x-8 absolute left-1/2 -translate-x-1/2 pointer-events-auto font-normal">
+    <a href="/" class="hover:opacity-70 transition-opacity">Home</a>
+    <a href="/works" class="hover:opacity-70 transition-opacity">Works</a>
+    <a href="/#about" class="hover:opacity-70 transition-opacity">About</a>
+  </nav>
+
+  <!-- Contact CTA -->
+  <div class="pointer-events-auto">
+    <a href="/contact" class="hover:opacity-70 transition-opacity tracking-tight font-normal">
+      Let's talk
+    </a>
+  </div>
+</header>
+
+<style>
+  /* --- Entrance Animation: Downward Slide --- */
+  @keyframes navDown {
+    0% {
+      opacity: 0;
+      transform: translateY(-24px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .nav-slide-down {
+    animation: navDown 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
+  }
+</style>

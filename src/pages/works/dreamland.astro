@@ -1,0 +1,257 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Footer from '../../components/Footer.astro';
+
+const moreWorks = [
+  {
+    title: "Nocta",
+    services: ["Brand, website design,", "Development"],
+    image: "/images/01.webp",
+    href: "/works/nocta",
+    isLightBackground: false,
+  },
+  {
+    title: "Enraux",
+    services: ["Brand, website, Strategy,", "Development"],
+    image: "/images/02.webp",
+    href: "/works/enraux",
+    isLightBackground: true,
+  },
+];
+
+const titleLetters = "Dreamland".split("");
+---
+
+<Layout title="Dreamland — Luxury Wellness Digital Flagship | Prince Nkah">
+  <!-- Full-Bleed Ambient Hero Cover -->
+  <section class="relative w-full h-[88vh] sm:h-[92vh] bg-black select-none overflow-hidden">
+    <!-- Hero Image Background with Parallax -->
+    <img
+      id="hero-cover-img"
+      src="/images/04.webp"
+      alt="Dreamland - Sensory luxury wellness and spa experience"
+      class="w-full h-full object-cover object-center select-none will-change-transform scale-100"
+      loading="eager"
+    />
+
+    <!-- Subtle Depth Vignette -->
+    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30 pointer-events-none" />
+
+    <!-- Interactive Project Title with Staggered FLIP Typography & Live Link -->
+    <div class="absolute bottom-10 sm:bottom-14 md:bottom-16 right-6 sm:right-10 md:right-16 z-20 overflow-hidden">
+      <a
+        href="https://dreamland-spa.vercel.app/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hero-wipe-title group inline-flex items-start gap-2 sm:gap-3.5 text-6xl sm:text-7xl md:text-8xl lg:text-[9.5rem] font-normal tracking-[-0.035em] leading-none text-white select-none cursor-pointer"
+        aria-label="Visit Dreamland live website (opens in new tab)"
+      >
+        <span class="sr-only">Dreamland</span>
+
+        <!-- Staggered Cascading Letter Roll -->
+        <span class="relative flex overflow-hidden leading-none" aria-hidden="true">
+          {titleLetters.map((char, index) => (
+            <span class="relative inline-flex flex-col overflow-hidden">
+              <span 
+                class="inline-block transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-full"
+                style={`transition-delay: ${index * 22}ms;`}
+              >
+                {char}
+              </span>
+              <span 
+                class="absolute top-full left-0 inline-block transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-full"
+                style={`transition-delay: ${index * 22}ms;`}
+              >
+                {char}
+              </span>
+            </span>
+          ))}
+        </span>
+
+        <!-- Razor-Sharp Diagonal Arrow (Moves Up-Right on Hover) -->
+        <span class="inline-flex overflow-hidden pt-1.5 sm:pt-3 md:pt-5" aria-hidden="true">
+          <svg 
+            class="w-6 h-6 sm:w-8 sm:h-8 md:w-11 md:h-11 text-white/80 group-hover:text-white transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1.5 group-hover:-translate-y-1.5"
+            fill="none" 
+            stroke="currentColor" 
+            stroke-width="2.2" 
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+          </svg>
+        </span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Project Overview & Information Block (Original Exact Layout & Spacing) -->
+  <section 
+    id="project-info" 
+    class="wipe-section w-full bg-black text-white py-24 sm:py-32 md:py-40 px-6 sm:px-10 md:px-14 select-none"
+  >
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8">
+      
+      <!-- Left Column: INFO Label -->
+      <div class="lg:col-span-3 xl:col-span-3">
+        <span class="wipe-content block text-xs sm:text-[13px] font-medium tracking-wider uppercase text-neutral-400">
+          INFO
+        </span>
+      </div>
+
+      <!-- Right Column: Editorial Paragraph (Continuous Untouched Flow) -->
+      <div class="lg:col-span-9 xl:col-span-9">
+        <p class="wipe-content wipe-delay text-xl sm:text-2xl md:text-3xl lg:text-[2.2rem] font-normal leading-[1.28] tracking-[-0.02em] text-white max-w-4xl">
+          A luxury digital flagship and web presence engineered for a premium wellness and restorative spa. We crafted a warm, sensory visual experience that conveys total tranquility and effortless refinement from the first touchpoint, backed by an intuitive, distraction-free reservation architecture designed to turn browsing visitors into booked appointments.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MORE WORKS Section -->
+  <section id="more-works" class="wipe-section w-full bg-black text-white select-none">
+    <!-- Sub-Header Bar -->
+    <div class="w-full px-6 sm:px-10 md:px-14 pb-6 flex items-center justify-between text-xs sm:text-[13px] tracking-wider uppercase">
+      <span class="wipe-content font-medium text-white">MORE WORKS</span>
+      <a href="/works" class="wipe-content font-normal text-neutral-400 hover:text-white transition-colors cursor-pointer">
+        SEE ALL (4)
+      </a>
+    </div>
+
+    <!-- 2-Card Horizontal Row -->
+    <div class="grid grid-cols-1 md:grid-cols-2 w-full">
+      {moreWorks.map((work) => (
+        <a
+          href={work.href}
+          class="group relative block w-full aspect-square overflow-hidden cursor-pointer"
+        >
+          <!-- Card Image -->
+          <img
+            src={work.image}
+            alt={work.title}
+            class="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105 pointer-events-none"
+            loading="lazy"
+          />
+
+          <!-- Vignette for Dark Card -->
+          {!work.isLightBackground && (
+            <div class="absolute inset-0 bg-black/15 transition-opacity duration-300 group-hover:bg-black/25 pointer-events-none" />
+          )}
+
+          <!-- Centered Split Title & Category Overlay -->
+          <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 flex items-center justify-between px-8 sm:px-10 md:px-12 lg:px-14 z-10 pointer-events-none">
+            <h3
+              class:list={[
+                "text-2xl sm:text-3xl md:text-4xl font-medium tracking-tight transition-transform duration-300 group-hover:translate-x-1",
+                work.isLightBackground ? "text-neutral-900" : "text-white",
+              ]}
+            >
+              {work.title}
+            </h3>
+
+            <div
+              class:list={[
+                "text-right text-xs sm:text-[13px] md:text-sm font-normal leading-snug tracking-tight transition-transform duration-300 group-hover:-translate-x-1",
+                work.isLightBackground ? "text-neutral-900" : "text-white",
+              ]}
+            >
+              {work.services.map((line) => (
+                <div>{line}</div>
+              ))}
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Monolithic Signature Footer -->
+  <Footer />
+</Layout>
+
+<style>
+  /* --- Hero Title Entrance on Load --- */
+  @keyframes heroWipeUp {
+    0% {
+      transform: translate3d(0, 100%, 0);
+    }
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  .hero-wipe-title {
+    animation: heroWipeUp 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+  }
+
+  /* --- Premium Razor Clip-Path Curtain Wipe --- */
+  .wipe-content {
+    clip-path: inset(0 0 100% 0);
+    transform: translate3d(0, 35px, 0);
+    opacity: 0;
+    transition: 
+      clip-path 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+      opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: clip-path, transform, opacity;
+  }
+
+  .wipe-delay {
+    transition-delay: 0.14s;
+  }
+
+  .wipe-section.is-wiped .wipe-content {
+    clip-path: inset(0 0 0% 0);
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+</style>
+
+<script>
+  function initEditorialWipe() {
+    const sections = document.querySelectorAll<HTMLElement>('.wipe-section');
+    if (!sections.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-wiped');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.08,
+        rootMargin: '0px 0px -30px 0px',
+      }
+    );
+
+    sections.forEach((sec) => observer.observe(sec));
+
+    // Parallax on cover image
+    const heroImg = document.getElementById('hero-cover-img');
+    if (heroImg) {
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            const scrollY = window.scrollY;
+            if (scrollY < window.innerHeight) {
+              heroImg.style.transform = `translate3d(0, ${(scrollY * 0.18).toFixed(1)}px, 0)`;
+            }
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initEditorialWipe);
+  } else {
+    initEditorialWipe();
+  }
+  document.addEventListener('astro:page-load', initEditorialWipe);
+</script>
